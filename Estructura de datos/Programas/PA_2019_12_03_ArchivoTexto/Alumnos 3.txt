@@ -1,0 +1,101 @@
+25
+Daniel Canales Lopez
+G
+28
+44
+Jorge Dias Gonzalez
+E
+25
+49
+Adrián Carillo Gonzalez
+A
+17
+86
+Laura Sanches Moreno
+G
+17
+46
+Daniel Luevanos Canales
+C
+21
+98
+Laura Vazquez Rubio
+C
+17
+76
+Javier Sanches Fernandez
+C
+21
+83
+Juan Jimenez Santoyo
+G
+17
+66
+Diana Hernandez Jimenez
+D
+21
+97
+Roberto Montes Delgado
+F
+25
+43
+Julio Ruiz Hernandez
+B
+22
+51
+Jesus Muñoz Delgado
+C
+22
+50
+Silvia Sanches Santos
+D
+25
+80
+Manuel Luevanos Canales
+D
+20
+50
+Daniel Gomez Acosta
+G
+25
+100
+Raul Gutierrez Martinez
+E
+29
+93
+Diana Martinez Acosta
+G
+27
+84
+Manuel Romero Rubio
+F
+21
+73
+Ulises Esquivel Sanz
+A
+23
+55
+Jose Lopez Palacios
+E
+28
+90
+Abril Vazquez Gomez
+E
+26
+41
+Raul Jimenez Rangel
+B
+23
+91
+David Ramirez Rodriguez
+C
+29
+91
+Daniel Ramos Ramirez
+B
+27
+53
+Lucas Martinez Sanz
+D
+17
+54

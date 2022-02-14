@@ -1,0 +1,37 @@
+9
+Carlos Serrano Gutierrez
+D
+21
+77
+Martin Moreno Navarro
+D
+29
+97
+Lucas Serrano Santoyo
+B
+23
+87
+Jorge Perez Santoyo
+B
+26
+92
+Mateo Iglesias Sanz
+A
+28
+72
+Adrián Torres Garcia
+B
+26
+90
+Javier Salazar Alvarez
+G
+21
+80
+Diana Moreno Santoyo
+D
+30
+57
+Manuel Gonzales Luevanos
+A
+25
+96

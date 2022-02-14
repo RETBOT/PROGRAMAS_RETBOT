@@ -1,0 +1,57 @@
+14
+Juan Rodriguez Fernandez
+B
+18
+50
+Sergio Santoyo Lopez
+C
+18
+92
+Patricia Romo Fernandez
+A
+19
+74
+Javier Martinez Alvarez
+B
+17
+57
+Nicolas Martinez Carillo
+E
+19
+71
+Jesus Ramirez Navarro
+E
+29
+41
+Álvaro Palacios Ruiz
+E
+17
+42
+Mateo Torres Carillo
+E
+24
+65
+Julio Romero Palacios
+B
+25
+63
+Abril Gutierrez Romero
+F
+26
+70
+Raul Romero Gonzalez
+A
+28
+97
+Martha Romero Mendez
+G
+28
+65
+Pablo Martinez Serrano
+C
+18
+46
+Miguel Lopez Dias
+D
+19
+76
