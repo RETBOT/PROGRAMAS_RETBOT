@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <title>Formularios</title>
+    </head>
+    <body bgcolor="#FFff00">
+        <h1>Ejemplos de formularios</h1><hr>
+        <form action="mailto:robertoesquiveltr16@gmail.com" method="POST" enctype="text/plain">
+            Nombre: <input type="text" name="Nombre" placeholder="Escribe tu nombre" size="15" maxlength="10"> <br>
+            Contraseña: <input type="password" name="Contraseña" placeholder="Escribe tu contraseña" size="15" maxlength="10"><br>
+            Comentatios: <br><Textarea name="comentarios" rows="5" cols="20" placeholder="Comentarios"></Textarea><br>
+            
+            Color favorito:
+            <select name="ColorPreferido" multiple size="2">
+                <option>Rojo</option>
+                <option>Azul</option>
+                <option>Verde</option>
+                <option>Amarillo</option>
+            </select>
+
+            <br><input type="checkbox" name="Lista" checked> Si, desea ser incluido en la lista de correo
+
+            <br>Sistema Operativo favorito <br>
+            <input type="radio" name="SistemaOperativo" value="windows" checked> Windows
+            <input type="radio" name="SistemaOperativo" value="Mac"> Mac
+            <input type="radio" name="SistemaOperativo" value="Unix"> Unix
+
+
+            <br><input type="submit" value="Enviar"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="reset" value="Borrar">
+        </form>
+
+    </body>
+</html>
