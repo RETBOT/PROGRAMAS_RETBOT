@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="PA_2019_11_25_CalculadoraNumeroCompuesto">
+  <ClassDiagramComponents>
+    <Class name="Complejo" package="pa_2019_11_25_calculadoranumerocompuesto" visibility="public" xPosition="887.0" yPosition="868.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="int" name="real"/>
+          <Argument type="int" name="imag"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="setReal" returnType="void" visibility="public">
+          <Argument type="int" name="real"/>
+        </Method>
+        <Method name="setImaginario" returnType="void" visibility="public">
+          <Argument type="int" name="imag"/>
+        </Method>
+        <Method name="getReal" returnType="int" visibility="public"/>
+        <Method name="getImaginario" returnType="int" visibility="public"/>
+        <Method name="mostrar" returnType="String" visibility="public"/>
+        <Method name="suma" returnType="Object" visibility="public">
+          <Argument type="Object" name="o"/>
+        </Method>
+        <Method name="resta" returnType="Object" visibility="public">
+          <Argument type="Object" name="o"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Fraccion" package="pa_2019_11_25_calculadoranumerocompuesto" visibility="public" xPosition="887.0" yPosition="568.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="int" name="num"/>
+          <Argument type="int" name="den"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="setNumerador" returnType="void" visibility="public">
+          <Argument type="int" name="num"/>
+        </Method>
+        <Method name="setDenominador" returnType="void" visibility="public">
+          <Argument type="int" name="den"/>
+        </Method>
+        <Method name="getNumerador" returnType="int" visibility="public"/>
+        <Method name="getDenominador" returnType="int" visibility="public"/>
+        <Method name="desplegar" returnType="String" visibility="public"/>
+        <Method name="mostrar" returnType="String" visibility="public"/>
+        <Method name="suma" returnType="Object" visibility="public">
+          <Argument type="Object" name="o"/>
+        </Method>
+        <Method name="resta" returnType="Object" visibility="public">
+          <Argument type="Object" name="o"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="JFrameCalculadora" package="pa_2019_11_25_calculadoranumerocompuesto" visibility="public" xPosition="685.0" yPosition="1197.0">
+      <Fields>
+        <Field name="buttonGroup1" type="javax.swing.ButtonGroup" visibility="private"/>
+        <Field name="jButResta" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButSuma" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabResultado" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jRadioComplejo" type="javax.swing.JRadioButton" visibility="private"/>
+        <Field name="jRadioFraccion" type="javax.swing.JRadioButton" visibility="private"/>
+        <Field name="jRadioPunto" type="javax.swing.JRadioButton" visibility="private"/>
+        <Field name="jTextParte1A" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="jTextParte1B" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="jTextParte2A" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="jTextParte2B" type="javax.swing.JTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="NumeroCompuesto" package="pa_2019_11_25_calculadoranumerocompuesto" visibility="public" isAbstract="true" xPosition="1225.0" yPosition="563.0">
+      <Fields>
+        <Field name="parte1" type="int" visibility="private"/>
+        <Field name="parte2" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="protected"/>
+        <Constructor visibility="protected">
+          <Argument type="int" name="parte1"/>
+          <Argument type="int" name="parte2"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="setParte1" returnType="void" visibility="protected">
+          <Argument type="int" name="parte1"/>
+        </Method>
+        <Method name="setParte2" returnType="void" visibility="protected">
+          <Argument type="int" name="parte2"/>
+        </Method>
+        <Method name="getParte1" returnType="int" visibility="protected"/>
+        <Method name="getParte2" returnType="int" visibility="protected"/>
+        <Method name="desplegar" returnType="String" visibility="public"/>
+        <Method name="mostrar" returnType="String" visibility="public" isAbstract="true"/>
+      </Methods>
+    </Class>
+    <Class name="Punto" package="pa_2019_11_25_calculadoranumerocompuesto" visibility="public" xPosition="901.0" yPosition="295.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="int" name="x"/>
+          <Argument type="int" name="y"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="setX" returnType="void" visibility="public">
+          <Argument type="int" name="x"/>
+        </Method>
+        <Method name="setY" returnType="void" visibility="public">
+          <Argument type="int" name="y"/>
+        </Method>
+        <Method name="getX" returnType="int" visibility="public"/>
+        <Method name="getY" returnType="int" visibility="public"/>
+        <Method name="mostrar" returnType="String" visibility="public"/>
+        <Method name="suma" returnType="Object" visibility="public">
+          <Argument type="Object" name="o"/>
+        </Method>
+        <Method name="resta" returnType="Object" visibility="public">
+          <Argument type="Object" name="o"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Interface name="IOperacionesBasicas" package="pa_2019_11_25_calculadoranumerocompuesto" visibility="public" xPosition="564.0" yPosition="649.0">
+      <Methods>
+        <Method name="suma" returnType="Object" visibility="package">
+          <Argument type="Object" name="o"/>
+        </Method>
+        <Method name="resta" returnType="Object" visibility="package">
+          <Argument type="Object" name="o"/>
+        </Method>
+      </Methods>
+    </Interface>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="pa_2019_11_25_calculadoranumerocompuesto.Fraccion" target="pa_2019_11_25_calculadoranumerocompuesto.IOperacionesBasicas"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="pa_2019_11_25_calculadoranumerocompuesto.Punto" target="pa_2019_11_25_calculadoranumerocompuesto.IOperacionesBasicas"/>
+    <IsRelation name="is" source="pa_2019_11_25_calculadoranumerocompuesto.Punto" target="pa_2019_11_25_calculadoranumerocompuesto.NumeroCompuesto"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="pa_2019_11_25_calculadoranumerocompuesto.Complejo" target="pa_2019_11_25_calculadoranumerocompuesto.IOperacionesBasicas"/>
+    <IsRelation name="is" source="pa_2019_11_25_calculadoranumerocompuesto.Fraccion" target="pa_2019_11_25_calculadoranumerocompuesto.NumeroCompuesto"/>
+    <IsRelation name="is" source="pa_2019_11_25_calculadoranumerocompuesto.Complejo" target="pa_2019_11_25_calculadoranumerocompuesto.NumeroCompuesto"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

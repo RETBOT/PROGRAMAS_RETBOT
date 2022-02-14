@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="pa_19130519_proyecto_03">
+  <ClassDiagramComponents>
+    <Class name="Oficina" package="pa_19130519_proyecto_03" visibility="public" isAbstract="true" xPosition="822.0" yPosition="264.0">
+      <Fields>
+        <Field name="descripcion" type="String" visibility="private"/>
+        <Field name="precio" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="descripcion"/>
+          <Argument type="int" name="precio"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getDescripcion" returnType="String" visibility="public"/>
+        <Method name="setDescripcion" returnType="void" visibility="public">
+          <Argument type="String" name="descripcion"/>
+        </Method>
+        <Method name="getPrecio" returnType="int" visibility="public"/>
+        <Method name="setPrecio" returnType="void" visibility="public">
+          <Argument type="int" name="precio"/>
+        </Method>
+        <Method name="dibujar" returnType="void" visibility="public" isAbstract="true">
+          <Argument type="int" name="x"/>
+          <Argument type="Component" name="componente"/>
+        </Method>
+        <Method name="mover" returnType="void" visibility="public" isAbstract="true"/>
+      </Methods>
+    </Class>
+    <Class name="Mueble" package="pa_19130519_proyecto_03" visibility="public" xPosition="574.0" yPosition="643.0">
+      <Fields>
+        <Field name="color" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="color"/>
+          <Argument type="String" name="descripcion"/>
+          <Argument type="int" name="precio"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getColor" returnType="String" visibility="public"/>
+        <Method name="setColor" returnType="void" visibility="public">
+          <Argument type="String" name="color"/>
+        </Method>
+        <Method name="dibujar" returnType="void" visibility="public">
+          <Argument type="int" name="x"/>
+          <Argument type="Component" name="componente"/>
+        </Method>
+        <Method name="mover" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Equipo" package="pa_19130519_proyecto_03" visibility="public" xPosition="998.0" yPosition="632.0">
+      <Fields>
+        <Field name="marca" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="marca"/>
+          <Argument type="String" name="descripcion"/>
+          <Argument type="int" name="precio"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getMarca" returnType="String" visibility="public"/>
+        <Method name="setMarca" returnType="void" visibility="public">
+          <Argument type="String" name="marca"/>
+        </Method>
+        <Method name="dibujar" returnType="void" visibility="public">
+          <Argument type="int" name="x"/>
+          <Argument type="Component" name="componente"/>
+        </Method>
+        <Method name="mover" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Sillon" package="pa_19130519_proyecto_03" visibility="public" xPosition="274.0" yPosition="932.0">
+      <Fields>
+        <Field name="dimenciones" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="color"/>
+          <Argument type="String" name="descripcion"/>
+          <Argument type="int" name="precio"/>
+          <Argument type="String" name="dimenciones"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="setColor" returnType="void" visibility="public"/>
+        <Method name="dibujar" returnType="void" visibility="public">
+          <Argument type="int" name="x"/>
+          <Argument type="Component" name="componente"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Gabinete" package="pa_19130519_proyecto_03" visibility="public" xPosition="574.0" yPosition="932.0">
+      <Fields>
+        <Field name="dimenciones" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="color"/>
+          <Argument type="String" name="descripcion"/>
+          <Argument type="int" name="precio"/>
+          <Argument type="String" name="dimenciones"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="setColor" returnType="void" visibility="public"/>
+        <Method name="dibujar" returnType="void" visibility="public">
+          <Argument type="int" name="x"/>
+          <Argument type="Component" name="componente"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Monitor" package="pa_19130519_proyecto_03" visibility="public" xPosition="915.0" yPosition="932.0">
+      <Fields>
+        <Field name="dimenciones" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="dimenciones"/>
+          <Argument type="String" name="marca"/>
+          <Argument type="String" name="descripcion"/>
+          <Argument type="int" name="precio"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="setMarca" returnType="void" visibility="public"/>
+        <Method name="dibujar" returnType="void" visibility="public">
+          <Argument type="int" name="x"/>
+          <Argument type="Component" name="componente"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="PA_19130519_Frame_01" package="pa_19130519_proyecto_03" visibility="public" xPosition="1733.0" yPosition="330.0">
+      <Fields>
+        <Field name="f" type="PA_19130519_Frame_01" visibility="package"/>
+        <Field name="buttonGroup1" type="javax.swing.ButtonGroup" visibility="private"/>
+        <Field name="jButDiagonal" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButDibujar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButEntrar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButMover" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButMover2" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButVertical" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButton1" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jRadioBoton" type="javax.swing.JRadioButton" visibility="private"/>
+        <Field name="jRadioFrame" type="javax.swing.JRadioButton" visibility="private"/>
+        <Field name="jRadioOtro" type="javax.swing.JRadioButton" visibility="private"/>
+        <Field name="jRadioPanel" type="javax.swing.JRadioButton" visibility="private"/>
+        <Field name="jSpinner1" type="javax.swing.JSpinner" visibility="private"/>
+        <Field name="panel1" type="java.awt.Panel" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="dibujar" returnType="void" visibility="public">
+          <Argument type="int" name="x"/>
+          <Argument type="Component" name="componente"/>
+        </Method>
+        <Method name="dibujarSillon" returnType="void" visibility="public">
+          <Argument type="int" name="x"/>
+          <Argument type="Component" name="componente"/>
+        </Method>
+        <Method name="dibujarVertical" returnType="void" visibility="public">
+          <Argument type="int" name="y"/>
+          <Argument type="Component" name="componente"/>
+        </Method>
+        <Method name="dibujarGabinete" returnType="void" visibility="public">
+          <Argument type="int" name="x"/>
+          <Argument type="Component" name="componente"/>
+        </Method>
+        <Method name="dibujarMonitor" returnType="void" visibility="public">
+          <Argument type="int" name="x"/>
+          <Argument type="Component" name="componente"/>
+        </Method>
+        <Method name="dibujarDiagonal" returnType="void" visibility="public">
+          <Argument type="int" name="x"/>
+          <Argument type="int" name="y"/>
+          <Argument type="Component" name="componente"/>
+        </Method>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="jButDibujarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jSpinner1StateChanged" returnType="void" visibility="private">
+          <Argument type="javax.swing.event.ChangeEvent" name="evt"/>
+        </Method>
+        <Method name="jButMoverActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jButVerticalActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jButEntrarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jButDiagonalActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jButMover2ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="PA_19130519_Frame_01a" package="pa_19130519_proyecto_03" visibility="public" xPosition="1733.0" yPosition="75.0">
+      <Fields>
+        <Field name="frameInicio" type="PA_19130519_Frame_01" visibility="package"/>
+        <Field name="jButRegresar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="PA_19130519_Frame_01" name="jframeIni"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="jButRegresarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <IsRelation name="is" source="pa_19130519_proyecto_03.Monitor" target="pa_19130519_proyecto_03.Equipo"/>
+    <HasRelation name="frameInicio" source="pa_19130519_proyecto_03.PA_19130519_Frame_01a" target="pa_19130519_proyecto_03.PA_19130519_Frame_01" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="f" source="pa_19130519_proyecto_03.PA_19130519_Frame_01" target="pa_19130519_proyecto_03.PA_19130519_Frame_01" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="pa_19130519_proyecto_03.Equipo" target="pa_19130519_proyecto_03.Oficina"/>
+    <IsRelation name="is" source="pa_19130519_proyecto_03.Mueble" target="pa_19130519_proyecto_03.Oficina"/>
+    <IsRelation name="is" source="pa_19130519_proyecto_03.Sillon" target="pa_19130519_proyecto_03.Mueble"/>
+    <IsRelation name="is" source="pa_19130519_proyecto_03.Gabinete" target="pa_19130519_proyecto_03.Mueble"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
