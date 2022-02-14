@@ -1,0 +1,875 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0037)http://www.genmm.com/opengl/index.htm -->
+<HTML><HEAD><TITLE>GenMM -> OpenGL</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<STYLE type=text/css>BODY {
+	FONT-SIZE: 12px; COLOR: #000000; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+TD {
+	FONT-SIZE: 12px; COLOR: #000000; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+TH {
+	FONT-SIZE: 12px; COLOR: #000000; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+BODY {
+	BACKGROUND-COLOR: #ffffff
+}
+.chico {
+	FONT-SIZE: 10px; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+A:link {
+	COLOR: #ff9900
+}
+A:visited {
+	COLOR: #ff9900
+}
+A:hover {
+	COLOR: #ff9900
+}
+A:active {
+	COLOR: #ff9900
+}
+.chicocolor {
+	FONT-SIZE: 10px; COLOR: #006699; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.titulo {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #000000; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.style1 {
+	FONT-SIZE: 9px
+}
+</STYLE>
+
+<META content="MSHTML 6.00.2900.3199" name=GENERATOR></HEAD>
+<BODY>
+<H1 align=center>OpenGL<BR><SPAN class=style1>(discontinuado, dec. 
+2003)</SPAN></H1>
+<P>&nbsp;</P>
+<P>En esta seccion veremos el uso de OpenGL, especificamente de GLUT (Graphic 
+Library Utiliy Toolkit). </P>
+<P>El primer paso es configurar el compilador y las librerias segun la 
+plataforma seleccionada. </P>
+<P>Para Windows (9X o XP), puedes bajar un paquete intalador que contiene el 
+compilador C (Mingw32) y las librerias de OpenGL desde <A 
+href="http://www.genmm.com/download/Mingw32OGL.exe">www.genmm.com/download/Mingw32OGL.exe</A> 
+(8.136 MB) {MD5: 53a8f0b2964f74fba5c4aca2365d1a25}.</P>
+<P>Para configurar este compilador (y las librerias asociadas), debes modificar 
+el PATH del sistema y crear una nueva variable. Lo anterior te permitira 
+compilar tus programas en cualquier directorio. Existen dos formas de hacer 
+esto: Para Windows 9X (95 ó 98) puedes modificar el archivo autoexec.bat como se 
+muestra en la figura de la izquierda o bien si tienes Windows XP puedes ir a las 
+variables de entorno (que en cuentras en las Propiedades de Mi PC) y Modificar 
+la variable PATH y luego crear una variable llamada MINGW32 como se muestra en 
+la figura de la derecha.</P>
+<TABLE width="100%">
+  <TBODY>
+  <TR>
+    <TD vAlign=center align=middle><IMG height=123 
+      src="GenMM - OpenGL_archivos/autoexec.gif" width=339></TD>
+    <TD vAlign=center align=middle><IMG height=430 
+      src="GenMM - OpenGL_archivos/env_variables.gif" width=384></TD></TR>
+  <TR vAlign=top align=middle>
+    <TD><SPAN class=chico>Para Windows 9X </SPAN></TD>
+    <TD class=chico>Para Windows XP </TD></TR></TBODY></TABLE>
+<P>Con windows 9X necesitas reiniciar tu PC, con Windows XP no. Si todo esta 
+correcto, chequealo escribiendo en la linea de comandos <SPAN class=titulo>gcc 
+-v</SPAN> para verificar la instalacion. Debe salir algo asi: </P>
+<P align=center><SPAN class=chico><IMG height=146 
+src="GenMM - OpenGL_archivos/cmd_line.gif" width=669><BR>Chequeo del compilador 
+</SPAN></P>
+<P>&nbsp;</P>
+<P>Para Linux (distribuciones con XWindow), puedes utilizar el compilador que 
+trae el sistema, pero de seguro no trae las librerias de GLUT. Puedes descargar 
+las librerias desde <A 
+href="http://www.genmm.com/download/linux/glut-3.6.tar.gz">www.genmm.com/download/linux/glut-3.6.tar.gz</A> 
+(1.717 MB) </P>
+<P><SPAN class=titulo><A name=opengl></A></SPAN></P>
+<P>&nbsp;</P>
+<P><SPAN class=titulo><A href="http://www.genmm.com/opengl/index.htm#i" 
+target=_self>i)</A> Primer ejemplo de OpenGL</SPAN><BR><SPAN class=titulo><A 
+href="http://www.genmm.com/opengl/index.htm#ii" target=_self>ii)</A> Sistema de 
+Coordenadas</SPAN><BR><SPAN class=titulo><A 
+href="http://www.genmm.com/opengl/index.htm#iii" target=_self>iii)</A> 
+Transformaciones Geometricas</SPAN><BR><SPAN class=titulo><A 
+href="http://www.genmm.com/opengl/index.htm#iv" target=_self>iv)</A> Figuras 
+GLUT<BR><A href="http://www.genmm.com/opengl/index.htm#v" target=_self>v)</A> 
+Modo de Poligonos, Luces y Perspectiva <BR><A 
+href="http://www.genmm.com/opengl/index.htm#vi" target=_self>vi)</A> Menu <BR><A 
+href="http://www.genmm.com/opengl/index.htm#vii" target=_self>vii)</A> Mouse y 
+Linea de Comandos</SPAN></P>
+<HR>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P class=titulo><A name=i></A><A 
+href="http://www.genmm.com/opengl/index.htm#opengl" target=_self>i)</A> Primer 
+ejemplo de OpenGL </P>
+<P>Con un editor de texto plano (por ej: notepad:windows o vi:linux) crea un 
+archivo 'simple.c' y luego compila desde la linea de comandos el siguiente 
+codigo para verificar si la instalacion esta correcta.</P>
+<P>Bajar codigo fuente <A 
+href="http://www.genmm.com/opengl/source/simple.zip"><IMG height=27 
+src="GenMM - OpenGL_archivos/icono_zip.gif" width=32 border=0></A> <A 
+href="http://www.genmm.com/opengl/source/simple.zip">simple.c</A> </P>
+<TABLE cellSpacing=10 cellPadding=10 border=3>
+  <TBODY>
+  <TR>
+    <TD bgColor=#e8e8e8><SPAN class=chicocolor>#include &lt;GL/glut.h&gt; 
+      </SPAN>
+      <P class=chicocolor>void dibuja() 
+      {<BR>glClear(GL_COLOR_BUFFER_BIT);<BR>glBegin(GL_POLYGON);<BR>&nbsp;&nbsp;&nbsp;glVertex2f(0.0, 
+      1.0);<BR>&nbsp;&nbsp;&nbsp;glVertex2f(0.5, 
+      -0.5);<BR>&nbsp;&nbsp;&nbsp;glVertex2f(-0.5, 
+      -0.5);<BR>glEnd();<BR>glFlush();<BR>}</P>
+      <P class=chicocolor>int main(int argc, char** argv) 
+      {<BR>glutCreateWindow("Primer Ejemplo de 
+      OpenGL");<BR>glutDisplayFunc(dibuja);<BR>glutMainLoop();<BR>return 
+      0;<BR>}</P></TD></TR></TBODY></TABLE>
+<P>Compilacion para Windows:</P>
+<P class=chicocolor>gcc simple.c -o simple.exe -mwindows -lopengl32 -lglu32 
+-lglut32</P>
+<P>Compilacion para Linux (puede variar segun la distribucion):</P>
+<P class=chicocolor>gcc simple.c -o simple -L/usr/X11R6/lib 
+/usr/lib/glut/libglut.a -lGLU -lGL -lXmu</P>
+<P>&nbsp;</P>
+<P>El resultado tendria que ser: </P>
+<TABLE width="100%" border=0>
+  <TBODY>
+  <TR vAlign=top align=middle>
+    <TD vAlign=bottom>
+      <P><IMG height=334 src="GenMM - OpenGL_archivos/simple_windows.gif" 
+      width=308><BR><SPAN class=chico>Corriendo en Windows XP</SPAN> </P></TD>
+    <TD vAlign=bottom>
+      <P><IMG height=326 src="GenMM - OpenGL_archivos/simple_linux.gif" 
+      width=312><BR><SPAN class=chico>Corriendo en Red Hat Linux 9 
+  </SPAN></P></TD></TR></TBODY></TABLE>
+<P>Anlizando el codigo, podemos apreciar que no se han hecho muchas 
+definiciones, por lo que OpenGL asume algunos parametros como son: el plano de 
+coordenadas, el color de fondo, el color de la figura, la forma de renderizar, 
+dimensiones, posicion de ventana, etc.</P>
+<P>En el siguiente diagrama se muestra el programa corriendo en Windows 95 con 
+algunos parametros por defecto. Por ejemplo, el plano adopta coordenadas 
+bidimensionales X(-1,+1), Y(-1,+1), el fondo es negro, la figura blanca, la 
+renderizacion es simple, el tamano de la ventana es de 300x300 pixeles 
+((0,0)-&gt;(300,300)) y parte desde (0,0) (esquina superior izquierda de la 
+pantalla). </P>
+<P align=center><IMG height=480 
+src="GenMM - OpenGL_archivos/simple_dimensiones.gif" width=652></P>
+<P align=left>Puedes cambiar el parametro <SPAN 
+class=chicocolor>GL_POLYGON</SPAN> con <SPAN class=chicocolor>GL_POINTS, 
+GL_LINES, GL_LINE_STRIP, GL_LINE_LOOP, GL_TRIANGLES, GL_TRIANGLE_STRIP, 
+GL_TRIANGLE_FAN, GL_QUADS</SPAN> y <SPAN class=chicocolor>GL_QUAD_STRIP</SPAN> 
+para ver que ocurre. Puedes agregar mas vertices para apreciar mejor los 
+resultados. De seleccionar un parametro que genere lineas, puedes especificar el 
+ancho en pixeles de esas lineas con la funcion <SPAN class=chicocolor>void 
+glLineWidth( GLfloat width )</SPAN>. En caso de generar puntos, puedes 
+especificar el tamano en pixeles con la funcion <SPAN class=chicocolor>void 
+glPointSize( GLfloat size )</SPAN>.</P>
+<P align=left>Mas informacion (especificaciones) acerca de estas funciones y 
+otras puedes encontrar en <A 
+href="http://www.genmm.com/gpc/documentacion/opengl_documentation/index.html" 
+target=_blank>http://www.genmm.com/gpc/documentacion/opengl_documentation/index.html</A> 
+o bien en el sitio oficial de OpenGL: <A href="http://www.opengl.org/" 
+target=_blank>http://www.opengl.org/</A></P>
+<P align=left>&nbsp;</P>
+<P align=left>&nbsp;</P>
+<P class=titulo align=left><A name=ii></A><A 
+href="http://www.genmm.com/opengl/index.htm#opengl" target=_self>ii)</A> Sistema 
+de Coordenadas </P>
+<P align=left>Ahora cambiaremos algunos parametros mencionados anteriormente. 
+</P>
+<P align=left>Bajar codigo fuente <A 
+href="http://www.genmm.com/opengl/source/sistema_coordenado.zip"><IMG height=27 
+src="GenMM - OpenGL_archivos/icono_zip.gif" width=32 border=0></A> <A 
+href="http://www.genmm.com/opengl/source/sistema_coordenado.zip">sistema_coordenado.c</A></P>
+<TABLE cellSpacing=10 cellPadding=10 border=3>
+  <TBODY>
+  <TR>
+    <TD bgColor=#e8e8e8><SPAN class=chicocolor>#include &lt;GL/glut.h&gt; 
+      </SPAN>
+      <P class=chicocolor>#define ancho 320<BR>#define alto 240<BR>#define 
+      profundidad 300</P>
+      <P class=chicocolor>void dibuja();</P>
+      <P class=chicocolor>int main(int argc, char** argv) 
+      {<BR>glutInitDisplayMode(GLUT_RGBA | 
+      GLUT_SINGLE);<BR>glutInitWindowPosition(100, 
+      0);<BR>glutInitWindowSize(ancho, alto);<BR>glutCreateWindow("Sistema de 
+      Coordenadas");<BR>glOrtho(-(ancho/2), (ancho/2), -(alto/2), (alto/2), 
+      -profundidad, profundidad);<BR>glClearColor(1, 1, 1, 
+      0);<BR>glutDisplayFunc(dibuja);<BR>glutMainLoop();<BR>return 0;<BR>}</P>
+      <P class=chicocolor>void dibuja() 
+      {<BR>glClear(GL_COLOR_BUFFER_BIT);<BR>glColor3f(0, 0, 
+      0);<BR>glBegin(GL_LINES);<BR>&nbsp;&nbsp;&nbsp;glVertex3f(-ancho/2, 0, 
+      0);<BR>&nbsp;&nbsp;&nbsp;glVertex3f(ancho/2, 0, 
+      0);<BR>&nbsp;&nbsp;&nbsp;glVertex3f(0, alto/2, 
+      0);<BR>&nbsp;&nbsp;&nbsp;glVertex3f(0, -alto/2, 
+      0);<BR>glEnd();<BR>glColor3f(1, 0, 
+      0);<BR>glBegin(GL_POLYGON);<BR>&nbsp;&nbsp;&nbsp;glVertex3f(0, 100, 
+      0);<BR>&nbsp;&nbsp;&nbsp;glVertex3f(50, -50, 
+      0);<BR>&nbsp;&nbsp;&nbsp;glVertex3f(-50, -50, 
+      0);<BR>glEnd();<BR>glFlush();<BR>}</P></TD></TR></TBODY></TABLE>
+<P align=left>* Podemos fijarnos ahora que el plano de coordanados esta 
+relacionado con el tamano de la ventana. <BR>* Definimos un plano tridimensional 
+X(-160,+160), Y(-120,+120), Z(-150,+150).<BR>* Creamos un poligono relleno con 
+vertices en Z=0.<BR>* El tamano de la ventana es de 320x240.<BR>* La ventana 
+parte en el punto (100,0) pixeles (recuerda que el monitor tiene el plano de 
+coordenadas invertido X(0,+ancho), Y(0,+alto)).<BR>* El color de fondo sigue la 
+norma RGB (Red, Green, Blue) = (1,1,1) la combinacion de los tres colores 
+(blanco).<BR>* Para el color de la figura el color es (1,0,0) = solo rojo.<BR>* 
+El color de los ejes es (0,0,0), ausencia de color (negro). </P>
+<P align=center><IMG height=505 
+src="GenMM - OpenGL_archivos/sistema_dimensiones.gif" width=655></P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P class=titulo><A name=iii></A><A 
+href="http://www.genmm.com/opengl/index.htm#opengl" target=_self>iii)</A> 
+Transformaciones Geometricas </P>
+<P>En el siguiente ejemplo, he agregado las transformaciones geometricas, 
+interaccion con el teclado y double buffering. </P>
+<P>Bajar codigo fuente <A 
+href="http://www.genmm.com/opengl/source/transformaciones.zip"><IMG height=27 
+src="GenMM - OpenGL_archivos/icono_zip.gif" width=32 border=0></A> <A 
+href="http://www.genmm.com/opengl/source/transformaciones.zip">transformaciones.c</A></P>
+<TABLE cellSpacing=10 cellPadding=10 border=3>
+  <TBODY>
+  <TR>
+    <TD bgColor=#e8e8e8><SPAN class=chicocolor>#include &lt;GL/glut.h&gt; 
+      </SPAN>
+      <P class=chicocolor>#define ancho 320<BR>#define alto 240<BR>#define 
+      profundidad 500</P>
+      <P class=chicocolor>void dibuja();<BR>void ejes();<BR>void 
+      tecladoNormal(unsigned char tecla, int x, int y);<BR>void 
+      tecladoEspecial(int tecla, int x, int y);</P>
+      <P class=chicocolor>int posx=0, posy=0;<BR>int angulo=0;<BR>float 
+      esc=1;</P>
+      <P class=chicocolor>int main(int argc, char** argv) 
+      {<BR>glutInitDisplayMode(GLUT_RGBA | 
+      GLUT_DOUBLE);<BR>glutInitWindowPosition(100, 
+      0);<BR>glutInitWindowSize(ancho, 
+      alto);<BR>glutCreateWindow("Transformaciones 
+      Geometricas");<BR>glOrtho(-(ancho/2), (ancho/2), -(alto/2), (alto/2), 
+      -profundidad, profundidad);<BR>glClearColor(1, 1, 1, 
+      0);<BR>glutDisplayFunc(dibuja);<BR>glutKeyboardFunc(tecladoNormal);<BR>glutSpecialFunc(tecladoEspecial);<BR>glutMainLoop();<BR>return 
+      0;<BR>}</P>
+      <P class=chicocolor>void dibuja() 
+      {<BR>glClear(GL_COLOR_BUFFER_BIT);<BR>ejes();<BR>glPushMatrix();<BR>&nbsp;&nbsp;&nbsp;glTranslatef(posx, 
+      posy, 0);<BR>&nbsp;&nbsp;&nbsp;glRotatef(angulo, 0, 0, 
+      1);<BR>&nbsp;&nbsp;&nbsp;glScalef(esc, esc, 
+      esc);<BR>&nbsp;&nbsp;&nbsp;glBegin(GL_POLYGON);<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glColor3f(1, 
+      0, 0);glVertex3f(0, 100, 
+      0);<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glColor3f(1, 1, 
+      0);glVertex3f(50, -50, 
+      0);<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glColor3f(0, 0, 
+      1);glVertex3f(-50, -50, 
+      0);<BR>&nbsp;&nbsp;&nbsp;glEnd();<BR>glPopMatrix();<BR>glutSwapBuffers();<BR>}</P>
+      <P class=chicocolor>void ejes() {<BR>glColor3f(0.9, 0.9, 
+      0.9);<BR>glBegin(GL_LINES);<BR>&nbsp;&nbsp;&nbsp;glVertex3f(-ancho/2, 0, 
+      0);<BR>&nbsp;&nbsp;&nbsp;glVertex3f(ancho/2, 0, 
+      0);<BR>&nbsp;&nbsp;&nbsp;glVertex3f(0, alto/2, 
+      0);<BR>&nbsp;&nbsp;&nbsp;glVertex3f(0, -alto/2, 0);<BR>glEnd();<BR>}</P>
+      <P class=chicocolor>void tecladoNormal(unsigned char tecla, int x, int y) 
+      {<BR>switch(tecla) {<BR>&nbsp;&nbsp;&nbsp;case 
+      's':<BR>&nbsp;&nbsp;&nbsp;case 'S':<BR>&nbsp;&nbsp;&nbsp;case 27: 
+      exit(0);break;<BR>&nbsp;&nbsp;&nbsp;case 'g':<BR>&nbsp;&nbsp;&nbsp;case 
+      'G': angulo++;break;<BR>}<BR>glutPostRedisplay();<BR>}</P>
+      <P class=chicocolor>void tecladoEspecial(int tecla, int x, int y) 
+      {<BR>switch(tecla) {<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_UP : 
+      posy++;break;<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_DOWN : 
+      posy--;break;<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_RIGHT : 
+      posx++;break;<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_LEFT : 
+      posx--;break;<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_PAGE_UP : 
+      esc=esc*1.01;break; <BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_PAGE_DOWN: 
+      esc=esc*0.99;break;<BR>}<BR>glutPostRedisplay();<BR>}</P></TD></TR></TBODY></TABLE>
+<P>Fijarse que al presionar las flechas (para la traslacion), la tecla 'g' o 'G' 
+(para la rotacion) y las teclas PageUP y PageDown (para la escalacion) solo se 
+ve afectado el poligono triangular, no asi los ejes que permanecen estaticos, 
+esto debido a los comandos <SPAN class=chicocolor>glPushMatrix()</SPAN> y <SPAN 
+class=chicocolor>glPopMatrix()</SPAN>. La tecla ESCAPE (char(27)), 's' o 'S' 
+sale del programa. Darse cuenta que las funciones agragadas <SPAN 
+class=chicocolor>glutKeyboardFunc(tecladoNormal)</SPAN> y <SPAN 
+class=chicocolor>glutSpecialFunc(tecladoEspecial)</SPAN> son del tipo CALLBACK 
+(siempre se estan ejecutando), es por eso que luego de estas funciones va <SPAN 
+class=chicocolor>glutMainLoop()</SPAN>. </P>
+<P>Tambien fijarse que he cambiado el modo de despliegue de <SPAN 
+class=chicocolor>glutInitDisplayMode(GLUT_RGBA | GLUT_SINGLE)</SPAN> a <SPAN 
+class=chicocolor>glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE)</SPAN> para 
+ejecutar correctamente el double buffering. Cambiar tambien <SPAN 
+class=chicocolor>glFlush()</SPAN> por <SPAN 
+class=chicocolor>glutSwapBuffers()</SPAN>. Con esto se corrige el parpadeo 
+(efecto visual indeseado) que se produce al aplicar alguna transformacion 
+geometrica. </P>
+<P align=center><IMG height=266 
+src="GenMM - OpenGL_archivos/trans_geo_double_buffer.gif" width=332></P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P class=titulo><A name=iv></A><A 
+href="http://www.genmm.com/opengl/index.htm#opengl" target=_self>iv)</A> Figuras 
+GLUT </P>
+<P>Haciendole mas modificaciones al archivo anterior, he agregado cuatro figuras 
+definidas en glut.h (Toroide, Esfera, Cubo y Cono) y una funcion para el 
+despliegue de texto.</P>
+<P>Bajar codigo fuente <A 
+href="http://www.genmm.com/opengl/source/figuras_glut.zip"><IMG height=27 
+src="GenMM - OpenGL_archivos/icono_zip.gif" width=32 border=0></A> <A 
+href="http://www.genmm.com/opengl/source/figuras_glut.zip">figuras_glut.c</A></P>
+<TABLE cellSpacing=10 cellPadding=10 border=3>
+  <TBODY>
+  <TR>
+    <TD bgColor=#e8e8e8><SPAN class=chicocolor>#include &lt;GL/glut.h&gt; 
+      </SPAN>
+      <P class=chicocolor>#define ancho 500<BR>#define alto 375<BR>#define 
+      profundidad 400</P>
+      <P class=chicocolor>void dibuja();<BR>void ejes();<BR>void 
+      tecladoNormal(unsigned char tecla, int x, int y);<BR>void 
+      tecladoEspecial(int tecla, int x, int y);<BR>void texto(int x, int y, char 
+      *palabra);</P>
+      <P class=chicocolor>int posx=0, posy=0;<BR>int angulo=35;<BR>float 
+      esc=1;<BR>unsigned int figura=1;<BR>float colorr=1, colorg=0, 
+colorb=0;</P>
+      <P class=chicocolor>int main(int argc, char** argv) 
+      {<BR>glutInitDisplayMode(GLUT_RGBA | 
+      GLUT_DOUBLE);<BR>glutInitWindowPosition(100, 
+      0);<BR>glutInitWindowSize(ancho, alto);<BR>glutCreateWindow("Figuras 
+      GLUT");<BR>glOrtho(-(ancho/2), (ancho/2), -(alto/2), (alto/2), 
+      -profundidad, profundidad);<BR>glClearColor(1, 1, 1, 
+      0);<BR>glutDisplayFunc(dibuja);<BR>glutKeyboardFunc(tecladoNormal);<BR>glutSpecialFunc(tecladoEspecial);<BR>glutMainLoop();<BR>return 
+      0;<BR>}</P>
+      <P class=chicocolor>void dibuja() 
+      {<BR>glClear(GL_COLOR_BUFFER_BIT);<BR>ejes();<BR>glPushMatrix();<BR>&nbsp;&nbsp;&nbsp;glTranslatef(posx, 
+      posy, 0);<BR>&nbsp;&nbsp;&nbsp;glRotatef(angulo, 1, 1, 
+      1);<BR>&nbsp;&nbsp;&nbsp;glRotatef(45, 1, 1, 
+      1);<BR>&nbsp;&nbsp;&nbsp;glScalef(esc, esc, 
+      esc);<BR>&nbsp;&nbsp;&nbsp;glColor3f(colorr, colorg, 
+      colorb);<BR>&nbsp;&nbsp;&nbsp;switch(figura) 
+      {<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 1: glutWireTorus(20, 80, 18, 
+      18);break;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 2: 
+      glutWireSphere(100, 18, 
+      18);break;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 3: glutWireCone(50, 
+      200, 18, 18);break;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 4: 
+      glutWireCube(100);break;<BR>&nbsp;&nbsp;&nbsp;}<BR>glPopMatrix();<BR>texto(-ancho/2+10,alto/2-20,"[F1: 
+      Toroide] [F2: Esfera] [F3: Cono] [F4: 
+      Cubo]");<BR>glutSwapBuffers();<BR>}</P>
+      <P class=chicocolor>void ejes() {<BR>glColor3f(0.9, 0.9, 
+      0.9);<BR>glBegin(GL_LINES);<BR>&nbsp;&nbsp;&nbsp;glVertex3f(-ancho/2, 0, 
+      0);<BR>&nbsp;&nbsp;&nbsp;glVertex3f(ancho/2, 0, 
+      0);<BR>&nbsp;&nbsp;&nbsp;glVertex3f(0, alto/2, 
+      0);<BR>&nbsp;&nbsp;&nbsp;glVertex3f(0, -alto/2, 0);<BR>glEnd();<BR>}</P>
+      <P class=chicocolor>void tecladoNormal(unsigned char tecla, int x, int y) 
+      {<BR>switch(tecla) {<BR>&nbsp;&nbsp;&nbsp;case 
+      's':<BR>&nbsp;&nbsp;&nbsp;case 'S':<BR>&nbsp;&nbsp;&nbsp;case 27: 
+      exit(0);break;<BR>&nbsp;&nbsp;&nbsp;case 'g':<BR>&nbsp;&nbsp;&nbsp;case 
+      'G': angulo++;break;<BR>}<BR>glutPostRedisplay();<BR>}</P>
+      <P class=chicocolor>void tecladoEspecial(int tecla, int x, int y) 
+      {<BR>switch(tecla) {<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_UP : 
+      posy++;break;<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_DOWN : 
+      posy--;break;<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_RIGHT : 
+      posx++;break;<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_LEFT : 
+      posx--;break;<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_PAGE_UP : 
+      esc=esc*1.01;break; <BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_PAGE_DOWN : 
+      esc=esc*0.99;break;<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_F1 : 
+      figura=1;colorr=1,colorg=0;colorb=0;break;<BR>&nbsp;&nbsp;&nbsp;case 
+      GLUT_KEY_F2 : 
+      figura=2;colorr=0,colorg=1;colorb=0;break;<BR>&nbsp;&nbsp;&nbsp;case 
+      GLUT_KEY_F3 : 
+      figura=3;colorr=0,colorg=0;colorb=1;break;<BR>&nbsp;&nbsp;&nbsp;case 
+      GLUT_KEY_F4 : 
+      figura=4;colorr=0.749,colorg=0.541;colorb=0.125;break;<BR>}<BR>glutPostRedisplay();<BR>}</P>
+      <P class=chicocolor>void texto(int x, int y, char *palabra) {<BR>int 
+      i;<BR>glColor3f(0,0,0);<BR>glRasterPos2f(x, y);<BR>for (i = 0; palabra[i]; 
+      i++)<BR>&nbsp;&nbsp;&nbsp;glutBitmapCharacter(GLUT_BITMAP_HELVETICA_10, 
+      palabra[i]);<BR>}</P></TD></TR></TBODY></TABLE>
+<P>Al igual que en el ejemplo anterior, las teclas de flechas desplazan el 
+objeto, PageUp y PageDown escalan y la tecla 'g' rota el objeto, pero esta vez 
+lo hace en los tres ejes a la vez. </P>
+<P align=center><IMG height=401 src="GenMM - OpenGL_archivos/figuras_glut.gif" 
+width=512></P>
+<P>Notar la particularidad que tiene el color del Cubo. Sus parametros RGB son 
+(0.749,0.541,0.125), es decir, una porcion de Rojo, otra de verde y un poco de 
+azul. La codificacion que tienen los programas en general para los colores va 
+desde el 0 al 255. en el caso de OpenGL, el rango es de 0 a 1, por lo que al 
+elegir un color en el formato comun hay que dividir esos numeros por 255. Asi 
+por ejemplo en este caso los valores originales son (191,138,32) y al dividirlos 
+por 255 da el numero mencionado arriba. </P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P class=titulo><A name=v></A><A 
+href="http://www.genmm.com/opengl/index.htm#opengl" target=_self>v)</A> Modo de 
+Poligonos, Luces y Perspectiva</P>
+<P>Se han agregado dos funciones del tipo CALLBACK: <SPAN 
+class=chicocolor>glutIdleFunc(desocupado)</SPAN> y <SPAN 
+class=chicocolor>glutReshapeFunc(redimensionado)</SPAN>. La primera, se ejecuta 
+cuando no se esta realizando ninguna funcion ni con el teclado, ni con el mouse, 
+ni se esta redimensionando la ventana, etc. Para el ejemplo, lo unico que hace 
+esa funcion es incrementar en una pequena fraccion el angulo de giro. La funcion 
+segunda tiene que ver con el como se veran los objetos en perspectiva. Si se 
+redimensiona la ventana se afectara entonces la perspectiva. </P>
+<P>Tambien he colocado parametros para la iluminacion. Fijarse que se habilita 
+la iluminacion solo cuando se va a dibujar el objeto tridimensional y luego se 
+deshabilita para que el eje, las letras o cualquier otra cosa que se quiera no 
+se vean afectados por la luz. </P>
+<P>La tecla F5 se programo para que alternara el movimiento. La tecla F9, F10 y 
+F11 cambian el modo del poligono a Puntos, Lineas y Relleno respectivamente. 
+</P>
+<P>Bajar codigo fuente <A 
+href="http://www.genmm.com/opengl/source/polygon_mode.zip"><IMG height=27 
+src="GenMM - OpenGL_archivos/icono_zip.gif" width=32 border=0></A> <A 
+href="http://www.genmm.com/opengl/source/polygon_mode.zip">polygon_mode.c</A></P>
+<TABLE cellSpacing=10 cellPadding=10 border=3>
+  <TBODY>
+  <TR>
+    <TD bgColor=#e8e8e8><SPAN class=chicocolor>#include &lt;GL/glut.h&gt; 
+      </SPAN>
+      <P class=chicocolor>#define ancho 640<BR>#define alto 480<BR>#define 
+      profundidad 500</P>
+      <P class=chicocolor>void dibuja();<BR>void ejes();<BR>void 
+      tecladoNormal(unsigned char tecla, int x, int y);<BR>void 
+      tecladoEspecial(int tecla, int x, int y);<BR>void texto(int x, int y, char 
+      *palabra);<BR>void desocupado();<BR>void redimensionado(int width, int 
+      height);<BR>void luces();</P>
+      <P class=chicocolor>int posx=0, posy=0;<BR>float angulo=0;<BR>float 
+      esc=1;<BR>unsigned int figura=1;<BR>GLfloat material_ambient[] = {0.05, 
+      0.05, 0.05, 1.0f};<BR>GLfloat material_diffuse[] = { 0.8, 0.0, 0.0, 
+      1.0f};<BR>GLfloat material_specular[] = {0.9, 0.8, 0.8, 1.0f};<BR>GLfloat 
+      luz_ambient[] = { 0.75, 0.75, 0.75, 0.0 };<BR>GLfloat luz_diffuse[] = { 
+      1.0, 1.0, 1.0, 0.0 };<BR>GLfloat luz_specular[] = { 1.0, 1.0, 1.0, 0.0 
+      };<BR>GLfloat luz_position[] = { 1.0, 1.0, 1.0, 0.0 };<BR>unsigned int 
+      luz=1;<BR>unsigned int movimiento=1;</P>
+      <P class=chicocolor>int main(int argc, char** argv) 
+      {<BR>glutInitDisplayMode(GLUT_STENCIL | GLUT_DOUBLE | 
+      GLUT_DEPTH);<BR>glutInitWindowPosition(100, 
+      0);<BR>glutInitWindowSize(ancho, alto);<BR>glutCreateWindow("Modo de 
+      Poligonos, Luces y Perspectiva");<BR>glOrtho(-(ancho/2), (ancho/2), 
+      -(alto/2), (alto/2), -profundidad, profundidad);<BR>glClearColor(1, 1, 1, 
+      0);<BR>glutDisplayFunc(dibuja);<BR>glutKeyboardFunc(tecladoNormal);<BR>glutSpecialFunc(tecladoEspecial);<BR>glutIdleFunc(desocupado);<BR>glutReshapeFunc(redimensionado);<BR>glutMainLoop();<BR>return 
+      0;<BR>}</P>
+      <P class=chicocolor>void dibuja() {<BR>glClear(GL_STENCIL_BUFFER_BIT | 
+      GL_COLOR_BUFFER_BIT | 
+      GL_DEPTH_BUFFER_BIT);<BR>ejes();<BR>luces();<BR>glPushMatrix();<BR>&nbsp;&nbsp;&nbsp;glTranslatef(posx, 
+      posy, 0);<BR>&nbsp;&nbsp;&nbsp;glRotatef(angulo, 1, 0, 
+      0);<BR>&nbsp;&nbsp;&nbsp;glRotatef(angulo, 0, 1, 
+      0);<BR>&nbsp;&nbsp;&nbsp;glRotatef(angulo, 0, 0, 
+      1);<BR>&nbsp;&nbsp;&nbsp;glScalef(esc, esc, 
+      esc);<BR>&nbsp;&nbsp;&nbsp;glColor3f(1, 0, 
+      0);<BR>&nbsp;&nbsp;&nbsp;if(luz==1)<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glEnable(GL_LIGHTING);<BR>&nbsp;&nbsp;&nbsp;switch(figura) 
+      {<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 1: glutSolidTorus(20, 80, 
+      18, 18);break;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 2: 
+      glutSolidSphere(100, 18, 
+      18);break;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 3: 
+      glutSolidCone(50, 200, 18, 
+      18);break;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 4: 
+      glutSolidCube(100);break;<BR>&nbsp;&nbsp;&nbsp;}<BR>&nbsp;&nbsp;&nbsp;glDisable(GL_LIGHTING);<BR>glPopMatrix();<BR>texto(-ancho/2+10,alto/2-20,"[F1: 
+      TOROIDE] [F2: ESFERA] [F3: CONO] [F4: 
+      CUBO]");<BR>texto(-ancho/2+10,-alto/2+10,"[F9: PUNTOS] [F10: LINEAS] [F11: 
+      RELLENO]");<BR>texto(ancho/2-160,-alto/2+10,"[F5: ALTERNAR 
+      MOVIMIENTO]");<BR>glutSwapBuffers();<BR>}</P>
+      <P class=chicocolor>void ejes() {<BR>glColor3f(0.9, 0.9, 
+      0.9);<BR>glBegin(GL_LINES);<BR>&nbsp;&nbsp;&nbsp;glVertex3f(-ancho/2, 0, 
+      0);<BR>&nbsp;&nbsp;&nbsp;glVertex3f(ancho/2, 0, 
+      0);<BR>&nbsp;&nbsp;&nbsp;glVertex3f(0, alto/2, 
+      0);<BR>&nbsp;&nbsp;&nbsp;glVertex3f(0, -alto/2, 0);<BR>glEnd();<BR>}</P>
+      <P class=chicocolor>void tecladoNormal(unsigned char tecla, int x, int y) 
+      {<BR>switch(tecla) {<BR>&nbsp;&nbsp;&nbsp;case 
+      's':<BR>&nbsp;&nbsp;&nbsp;case 'S':<BR>&nbsp;&nbsp;&nbsp;case 27: 
+      exit(0);break;<BR>}<BR>glutPostRedisplay();<BR>}</P>
+      <P class=chicocolor>void tecladoEspecial(int tecla, int x, int y) 
+      {<BR>switch(tecla) {<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_UP : 
+      posy++;break;<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_DOWN : 
+      posy--;break;<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_RIGHT : 
+      posx++;break;<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_LEFT : 
+      posx--;break;<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_PAGE_UP : 
+      esc=esc*1.01;break; <BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_PAGE_DOWN : 
+      esc=esc*0.99;break;<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_F1 : 
+      figura=1;break;<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_F2 : 
+      figura=2;break;<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_F3 : 
+      figura=3;break;<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_F4 : 
+      figura=4;break;<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_F5 : if(movimiento==0) 
+      movimiento=1; else movimiento=0;break;<BR>&nbsp;&nbsp;&nbsp;case 
+      GLUT_KEY_F9 : 
+      luz=0;glPolygonMode(GL_FRONT_AND_BACK,GL_POINT);break;<BR>&nbsp;&nbsp;&nbsp;case 
+      GLUT_KEY_F10 : 
+      luz=0;glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);break;<BR>&nbsp;&nbsp;&nbsp;case 
+      GLUT_KEY_F11 : 
+      luz=1;glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);break;<BR>}<BR>glutPostRedisplay();<BR>}</P>
+      <P class=chicocolor>void texto(int x, int y, char *palabra) {<BR>int 
+      i;<BR>glColor3f(0,0,0);<BR>glRasterPos2f(x, y);<BR>for (i = 0; palabra[i]; 
+      i++)<BR>&nbsp;&nbsp;&nbsp;glutBitmapCharacter(GLUT_BITMAP_HELVETICA_10, 
+      palabra[i]);<BR>}</P>
+      <P class=chicocolor>void desocupado() {<BR>if (movimiento==1) 
+      {<BR>&nbsp;&nbsp;&nbsp;angulo=angulo+0.3;<BR>&nbsp;&nbsp;&nbsp;if 
+      (angulo&gt;=360)<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;angulo=0;<BR>&nbsp;&nbsp;&nbsp;glutPostRedisplay();<BR>}<BR>}</P>
+      <P class=chicocolor>void redimensionado(int anchop, int altop) 
+      {<BR>glViewport(0,0,anchop,altop);<BR>glMatrixMode(GL_PROJECTION);<BR>glLoadIdentity();<BR>gluPerspective(60.0f,(GLfloat)ancho/(GLfloat)alto,0.1,profundidad*2);<BR>gluLookAt(0,0,profundidad/1.2,0,0,0,0,1,0);<BR>glMatrixMode(GL_MODELVIEW);<BR>glLoadIdentity();<BR>}<BR></P>
+      <P class=chicocolor>void luces() {<BR>glMaterialfv(GL_FRONT_AND_BACK, 
+      GL_AMBIENT, material_ambient);<BR>glMaterialfv(GL_FRONT_AND_BACK, 
+      GL_DIFFUSE, material_diffuse);<BR>glMaterialfv(GL_FRONT_AND_BACK, 
+      GL_SPECULAR, material_specular);<BR>glMaterialf(GL_FRONT_AND_BACK, 
+      GL_SHININESS, 50.0f);<BR>glLightfv(GL_LIGHT0, GL_AMBIENT, 
+      luz_ambient);<BR>glLightfv(GL_LIGHT0, GL_DIFFUSE, 
+      luz_diffuse);<BR>glLightfv(GL_LIGHT0, GL_SPECULAR, 
+      luz_specular);<BR>glLightfv(GL_LIGHT0, GL_POSITION, 
+      luz_position);<BR>glEnable(GL_DEPTH_TEST);<BR>glEnable(GL_LIGHT0);<BR>}</P></TD></TR></TBODY></TABLE>
+<P>&nbsp;</P>
+<P align=center><IMG height=506 
+src="GenMM - OpenGL_archivos/mod_luc_per_rell.gif" width=652></P>
+<P align=center><IMG height=506 
+src="GenMM - OpenGL_archivos/mod_luc_per_line.gif" width=652></P>
+<P align=center><IMG height=506 
+src="GenMM - OpenGL_archivos/mod_luc_per_poin.gif" width=652></P>
+<P align=center>&nbsp;</P>
+<P>&nbsp;</P>
+<P class=titulo><A name=vi></A><A 
+href="http://www.genmm.com/opengl/index.htm#opengl" target=_self>vi)</A> 
+Menu</P>
+<P>He quitado las referencias visuales de funcionamiento y he colocado la opcion 
+para utilizar el menu del mouse. </P>
+<P>Bajar codigo fuente <A 
+href="http://www.genmm.com/opengl/source/menu.zip"><IMG height=27 
+src="GenMM - OpenGL_archivos/icono_zip.gif" width=32 border=0></A> <A 
+href="http://www.genmm.com/opengl/source/menu.zip">menu.c</A></P>
+<TABLE cellSpacing=10 cellPadding=10 border=3>
+  <TBODY>
+  <TR>
+    <TD bgColor=#e8e8e8><SPAN class=chicocolor>#include &lt;GL/glut.h&gt; 
+      </SPAN>
+      <P class=chicocolor>#define ancho 640<BR>#define alto 480<BR>#define 
+      profundidad 500</P>
+      <P class=chicocolor>void dibuja();<BR>void ejes();<BR>void 
+      tecladoNormal(unsigned char tecla, int x, int y);<BR>void 
+      tecladoEspecial(int tecla, int x, int y);<BR>void texto(int x, int y, char 
+      *palabra);<BR>void desocupado();<BR>void redimensionado(int width, int 
+      height);<BR>void luces();<BR>void crear_menu();<BR>void menu(int 
+      opcion);<BR>void menupoligono(int opcion);<BR>void menutipo(int 
+      opcion);<BR>void alterna_movimiento();<BR>void alterna_pantalla();</P>
+      <P class=chicocolor>int posx=0, posy=0;<BR>float angulo=0;<BR>float 
+      esc=1;<BR>unsigned int figura=1;<BR>GLfloat material_ambient[] = {0.05, 
+      0.05, 0.05, 1.0f};<BR>GLfloat material_diffuse[] = { 0.8, 0.0, 0.0, 
+      1.0f};<BR>GLfloat material_specular[] = {0.9, 0.8, 0.8, 1.0f};<BR>GLfloat 
+      luz_ambient[] = { 0.75, 0.75, 0.75, 0.0 };<BR>GLfloat luz_diffuse[] = { 
+      1.0, 1.0, 1.0, 0.0 };<BR>GLfloat luz_specular[] = { 1.0, 1.0, 1.0, 0.0 
+      };<BR>GLfloat luz_position[] = { 1.0, 1.0, 1.0, 0.0 };<BR>unsigned int 
+      luz=1;<BR>unsigned int movimiento=1;<BR>unsigned int pantalla=0;</P>
+      <P class=chicocolor>int main(int argc, char** argv) 
+      {<BR>glutInitDisplayMode(GLUT_STENCIL | GLUT_DOUBLE | 
+      GLUT_DEPTH);<BR>glutInitWindowPosition(100, 
+      0);<BR>glutInitWindowSize(ancho, 
+      alto);<BR>glutCreateWindow("Menu");<BR>glOrtho(-(ancho/2), (ancho/2), 
+      -(alto/2), (alto/2), -profundidad, profundidad);<BR>glClearColor(1, 1, 1, 
+      0);<BR>crear_menu();<BR>glutDisplayFunc(dibuja);<BR>glutKeyboardFunc(tecladoNormal);<BR>glutSpecialFunc(tecladoEspecial);<BR>glutIdleFunc(desocupado);<BR>glutReshapeFunc(redimensionado);<BR>glutMainLoop();<BR>return 
+      0;<BR>}</P>
+      <P class=chicocolor>void dibuja() {<BR>glClear(GL_STENCIL_BUFFER_BIT | 
+      GL_COLOR_BUFFER_BIT | 
+      GL_DEPTH_BUFFER_BIT);<BR>ejes();<BR>luces();<BR>glPushMatrix();<BR>&nbsp;&nbsp;&nbsp;glTranslatef(posx, 
+      posy, 0);<BR>&nbsp;&nbsp;&nbsp;glRotatef(angulo, 1, 0, 
+      0);<BR>&nbsp;&nbsp;&nbsp;glRotatef(angulo, 0, 1, 
+      0);<BR>&nbsp;&nbsp;&nbsp;glRotatef(angulo, 0, 0, 
+      1);<BR>&nbsp;&nbsp;&nbsp;glScalef(esc, esc, 
+      esc);<BR>&nbsp;&nbsp;&nbsp;glColor3f(1, 0, 
+      0);<BR>&nbsp;&nbsp;&nbsp;if(luz==1)<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glEnable(GL_LIGHTING);<BR>&nbsp;&nbsp;&nbsp;switch(figura) 
+      {<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 1: glutSolidTorus(20, 80, 
+      18, 18);break;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 2: 
+      glutSolidSphere(100, 18, 
+      18);break;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 3: 
+      glutSolidCone(50, 200, 18, 
+      18);break;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 4: 
+      glutSolidCube(100);break;<BR>&nbsp;&nbsp;&nbsp;}<BR>&nbsp;&nbsp;&nbsp;glDisable(GL_LIGHTING);<BR>glPopMatrix();<BR>glutSwapBuffers();<BR>}</P>
+      <P class=chicocolor>void ejes() {<BR>glColor3f(0.9, 0.9, 
+      0.9);<BR>glBegin(GL_LINES);<BR>&nbsp;&nbsp;&nbsp;glVertex3f(-ancho/2, 0, 
+      0);<BR>&nbsp;&nbsp;&nbsp;glVertex3f(ancho/2, 0, 
+      0);<BR>&nbsp;&nbsp;&nbsp;glVertex3f(0, alto/2, 
+      0);<BR>&nbsp;&nbsp;&nbsp;glVertex3f(0, -alto/2, 0);<BR>glEnd();<BR>}</P>
+      <P class=chicocolor>void tecladoNormal(unsigned char tecla, int x, int y) 
+      {<BR>switch(tecla) {<BR>&nbsp;&nbsp;&nbsp;case 27: 
+      exit(0);break;<BR>}<BR>}</P>
+      <P class=chicocolor>void tecladoEspecial(int tecla, int x, int y) 
+      {<BR>switch(tecla) {<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_UP : 
+      posy++;break;<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_DOWN : 
+      posy--;break;<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_RIGHT : 
+      posx++;break;<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_LEFT : 
+      posx--;break;<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_PAGE_UP : 
+      esc=esc*1.01;break; <BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_PAGE_DOWN : 
+      esc=esc*0.99;break;<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_F1 : 
+      figura=1;break;<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_F2 : 
+      figura=2;break;<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_F3 : 
+      figura=3;break;<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_F4 : 
+      figura=4;break;<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_F5 : 
+      alterna_movimiento();break;<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_F6 : 
+      alterna_pantalla();break;<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_F9 : 
+      luz=0;glPolygonMode(GL_FRONT_AND_BACK,GL_POINT);break;<BR>&nbsp;&nbsp;&nbsp;case 
+      GLUT_KEY_F10 : 
+      luz=0;glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);break;<BR>&nbsp;&nbsp;&nbsp;case 
+      GLUT_KEY_F11 : 
+      luz=1;glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);break;<BR>}<BR>glutPostRedisplay();<BR>}</P>
+      <P class=chicocolor>void texto(int x, int y, char *palabra) {<BR>int 
+      i;<BR>glColor3f(0,0,0);<BR>glRasterPos2f(x, y);<BR>for (i = 0; palabra[i]; 
+      i++)<BR>&nbsp;&nbsp;&nbsp;glutBitmapCharacter(GLUT_BITMAP_HELVETICA_10, 
+      palabra[i]);<BR>}</P>
+      <P class=chicocolor>void desocupado() {<BR>if (movimiento==1) 
+      {<BR>&nbsp;&nbsp;&nbsp;angulo=angulo+0.3;<BR>&nbsp;&nbsp;&nbsp;if 
+      (angulo&gt;=360)<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;angulo=0;<BR>&nbsp;&nbsp;&nbsp;glutPostRedisplay();<BR>}<BR>}</P>
+      <P class=chicocolor>void redimensionado(int anchop, int altop) 
+      {<BR>glViewport(0,0,anchop,altop);<BR>glMatrixMode(GL_PROJECTION);<BR>glLoadIdentity();<BR>gluPerspective(60.0f,(GLfloat)ancho/(GLfloat)alto,0.1,profundidad*2);<BR>gluLookAt(0,0,profundidad/1.2,0,0,0,0,1,0);<BR>glMatrixMode(GL_MODELVIEW);<BR>glLoadIdentity();<BR>}<BR></P>
+      <P class=chicocolor>void luces() {<BR>glMaterialfv(GL_FRONT_AND_BACK, 
+      GL_AMBIENT, material_ambient);<BR>glMaterialfv(GL_FRONT_AND_BACK, 
+      GL_DIFFUSE, material_diffuse);<BR>glMaterialfv(GL_FRONT_AND_BACK, 
+      GL_SPECULAR, material_specular);<BR>glMaterialf(GL_FRONT_AND_BACK, 
+      GL_SHININESS, 50.0f);<BR>glLightfv(GL_LIGHT0, GL_AMBIENT, 
+      luz_ambient);<BR>glLightfv(GL_LIGHT0, GL_DIFFUSE, 
+      luz_diffuse);<BR>glLightfv(GL_LIGHT0, GL_SPECULAR, 
+      luz_specular);<BR>glLightfv(GL_LIGHT0, GL_POSITION, 
+      luz_position);<BR>glEnable(GL_DEPTH_TEST);<BR>glEnable(GL_LIGHT0);<BR>}</P>
+      <P class=chicocolor>void crear_menu() {<BR>int submenupoligono, 
+      submenutipo;<BR>submenupoligono = glutCreateMenu(menupoligono); 
+      <BR>&nbsp;&nbsp;&nbsp;glutAddMenuEntry("Toroide", 0); 
+      <BR>&nbsp;&nbsp;&nbsp;glutAddMenuEntry("Esfera", 1); 
+      <BR>&nbsp;&nbsp;&nbsp;glutAddMenuEntry("Cono", 2); 
+      <BR>&nbsp;&nbsp;&nbsp;glutAddMenuEntry("Cubo", 3); <BR>submenutipo = 
+      glutCreateMenu(menutipo); <BR>&nbsp;&nbsp;&nbsp;glutAddMenuEntry("Puntos", 
+      0); <BR>&nbsp;&nbsp;&nbsp;glutAddMenuEntry("Lineas", 1); 
+      <BR>&nbsp;&nbsp;&nbsp;glutAddMenuEntry("Relleno", 2); 
+      <BR>glutCreateMenu(menu);<BR>&nbsp;&nbsp;&nbsp;glutAddSubMenu("Poligono", 
+      submenupoligono); <BR>&nbsp;&nbsp;&nbsp;glutAddSubMenu("Tipo", 
+      submenutipo);<BR>&nbsp;&nbsp;&nbsp;glutAddMenuEntry("Alternar Movimiento", 
+      1);<BR>&nbsp;&nbsp;&nbsp;glutAddMenuEntry("Alternar Pantalla", 
+      2);<BR>&nbsp;&nbsp;&nbsp;glutAddMenuEntry("------------------", 
+      999);<BR>&nbsp;&nbsp;&nbsp;glutAddMenuEntry("Salir", 
+      3);<BR>glutAttachMenu(GLUT_RIGHT_BUTTON);<BR>}</P>
+      <P class=chicocolor>void menu(int opcion) {<BR>switch (opcion) 
+      {<BR>&nbsp;&nbsp;&nbsp;case 1: 
+      alterna_movimiento();break;<BR>&nbsp;&nbsp;&nbsp;case 2: 
+      alterna_pantalla();break;<BR>&nbsp;&nbsp;&nbsp;case 3: 
+      exit(0);break;<BR>&nbsp;&nbsp;&nbsp;default: break;<BR>}<BR>}</P>
+      <P class=chicocolor>void menupoligono(int opcion) {<BR>switch (opcion) 
+      {<BR>&nbsp;&nbsp;&nbsp;case 0 : figura=1;break;<BR>&nbsp;&nbsp;&nbsp;case 
+      1 : figura=2;break;<BR>&nbsp;&nbsp;&nbsp;case 2 : 
+      figura=3;break;<BR>&nbsp;&nbsp;&nbsp;case 3 : 
+      figura=4;break;<BR>&nbsp;&nbsp;&nbsp;default: break;<BR>}<BR>}</P>
+      <P class=chicocolor>void menutipo(int opcion) {<BR>switch (opcion) 
+      {<BR>&nbsp;&nbsp;&nbsp;case 0: 
+      luz=0;glPolygonMode(GL_FRONT_AND_BACK,GL_POINT);break;<BR>&nbsp;&nbsp;&nbsp;case 
+      1: 
+      luz=0;glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);break;<BR>&nbsp;&nbsp;&nbsp;case 
+      2: 
+      luz=1;glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);break;<BR>&nbsp;&nbsp;&nbsp;default: 
+      break;<BR>}<BR>}</P>
+      <P class=chicocolor>void alterna_movimiento() {<BR>if(movimiento==0) 
+      <BR>&nbsp;&nbsp;&nbsp;movimiento=1; <BR>else 
+      <BR>&nbsp;&nbsp;&nbsp;movimiento=0;<BR>}</P>
+      <P class=chicocolor>void alterna_pantalla() {<BR>if(pantalla==0) 
+      {<BR>&nbsp;&nbsp;&nbsp;glutFullScreen();<BR>&nbsp;&nbsp;&nbsp;pantalla=1;<BR>}<BR>else 
+      {<BR>&nbsp;&nbsp;&nbsp;glutReshapeWindow(ancho,alto);<BR>&nbsp;&nbsp;&nbsp;pantalla=0;<BR>}<BR>glutPostRedisplay();<BR>}</P></TD></TR></TBODY></TABLE>
+<P>Dependiendo de la maquina el programa se comportara a distintas velocidades, 
+esto mas bien responde a la velocidad del procesador y fundamentalmente se debe 
+a que en este nivel se hecen una cantidad enorme de calculos. </P>
+<P>He agregado la funcion <SPAN class=chicocolor>glutFullScreen()</SPAN> para 
+ver los modelos a pantalla completa. Con la opcion del menu 'Alternar Pantalla' 
+puedes redimensionar al tamano original nuevamente. </P>
+<P align=center><IMG height=506 src="GenMM - OpenGL_archivos/menu_linux_rh9.gif" 
+width=652><BR><SPAN class=chico>Pentium 4 a 2GHz, Red Hat Linux 9</SPAN></P>
+<P align=center><IMG height=506 src="GenMM - OpenGL_archivos/menu_win95.gif" 
+width=646><BR><SPAN class=chico>Pentium MMX a 133MHz, Win95</SPAN></P>
+<P align=center><IMG height=514 src="GenMM - OpenGL_archivos/menu_winxp.gif" 
+width=648><BR><SPAN class=chico>Pentium 4 a 2GHz, WinXP </SPAN></P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P><SPAN class=titulo><A name=vii></A><A 
+href="http://www.genmm.com/opengl/index.htm#opengl" target=_self>vii)</A> Mouse 
+y Linea de Comandos</SPAN></P>
+<P>Se han agregado funciones para mover la figura con el mouse y la opcion de 
+abrir el programa especificandole distintos paramentros con la linea de 
+comandos. </P>
+<P>Bajar codigo fuente <A 
+href="http://www.genmm.com/opengl/source/mouse.zip"><IMG height=27 
+src="GenMM - OpenGL_archivos/icono_zip.gif" width=32 border=0></A> <A 
+href="http://www.genmm.com/opengl/source/mouse.zip">mouse.c</A></P>
+<TABLE cellSpacing=10 cellPadding=10 border=3>
+  <TBODY>
+  <TR>
+    <TD bgColor=#e8e8e8><SPAN class=chicocolor>#include 
+      &lt;GL/glut.h&gt;<BR>#include &lt;stdio.h&gt;<BR>#include &lt;string.h&gt; 
+      </SPAN>
+      <P class=chicocolor>#define ancho 640<BR>#define alto 480<BR>#define 
+      profundidad 500</P>
+      <P class=chicocolor>void dibuja();<BR>void ejes();<BR>void 
+      tecladoNormal(unsigned char tecla, int x, int y);<BR>void 
+      tecladoEspecial(int tecla, int x, int y);<BR>void texto(int x, int y, char 
+      *palabra);<BR>void desocupado();<BR>void redimensionado(int width, int 
+      height);<BR>void luces();<BR>void crear_menu();<BR>void menu(int 
+      opcion);<BR>void menupoligono(int opcion);<BR>void menutipo(int 
+      opcion);<BR>void alterna_movimiento();<BR>void alterna_pantalla();<BR>void 
+      mouse(int bouton,int estado,int x,int y);<BR>void movimiento_mouse(int 
+      x,int y);<BR>void texto_terminal(char *cmd);</P>
+      <P class=chicocolor>int posx=0, posy=0;<BR>float angulo=0;<BR>float 
+      esc=1;<BR>unsigned int figura=1;<BR>GLfloat material_ambient[] = {0.05, 
+      0.05, 0.05, 1.0f};<BR>GLfloat material_diffuse[] = { 0.8, 0.0, 0.0, 
+      1.0f};<BR>GLfloat material_specular[] = {0.9, 0.8, 0.8, 1.0f};<BR>GLfloat 
+      luz_ambient[] = { 0.75, 0.75, 0.75, 0.0 };<BR>GLfloat luz_diffuse[] = { 
+      1.0, 1.0, 1.0, 0.0 };<BR>GLfloat luz_specular[] = { 1.0, 1.0, 1.0, 0.0 
+      };<BR>GLfloat luz_position[] = { 1.0, 1.0, 1.0, 0.0 };<BR>unsigned int 
+      luz=1;<BR>unsigned int movimiento=0;<BR>unsigned int pantalla=0;<BR>char 
+      presionado;<BR>int angulox=0,anguloy=0,x,y,xold,yold;</P>
+      <P class=chicocolor>int main(int argc, char** argv) {<BR>int i;<BR>for 
+      (i=1;i&lt;argc;i++) {<BR>&nbsp;&nbsp;&nbsp;if (strstr(argv[i],"-h") != 
+      NULL) 
+      <BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;texto_terminal(argv[0]);<BR>&nbsp;&nbsp;&nbsp;if 
+      (strstr(argv[i],"-m") != NULL) 
+      <BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;movimiento=1;<BR>&nbsp;&nbsp;&nbsp;if 
+      (strstr(argv[i],"-f") != NULL) {<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if 
+      (i+1 &gt;= 
+      argc)<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;texto_terminal(argv[0]);<BR>&nbsp;&nbsp;&nbsp;switch(atoi(argv[i+1])) 
+      {<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 1: 
+      figura=1;break;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 2: 
+      figura=2;break;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 3: 
+      figura=3;break;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 4: 
+      figura=4;break;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default: 
+      figura=5;break;<BR>&nbsp;&nbsp;&nbsp;}<BR>}<BR>}<BR>glutInitDisplayMode(GLUT_STENCIL 
+      | GLUT_DOUBLE | GLUT_DEPTH);<BR>glutInitWindowPosition(100, 
+      0);<BR>glutInitWindowSize(ancho, 
+      alto);<BR>glutCreateWindow("Mouse");<BR>glOrtho(-(ancho/2), (ancho/2), 
+      -(alto/2), (alto/2), -profundidad, profundidad);<BR>glClearColor(1, 1, 1, 
+      0);<BR>crear_menu();<BR>glutDisplayFunc(dibuja);<BR>glutKeyboardFunc(tecladoNormal);<BR>glutSpecialFunc(tecladoEspecial);<BR>glutIdleFunc(desocupado);<BR>glutReshapeFunc(redimensionado);<BR>glutMouseFunc(mouse);<BR>glutMotionFunc(movimiento_mouse);<BR>glutMainLoop();<BR>return 
+      0;<BR>}</P>
+      <P class=chicocolor>void dibuja() {<BR>glClear(GL_STENCIL_BUFFER_BIT | 
+      GL_COLOR_BUFFER_BIT | 
+      GL_DEPTH_BUFFER_BIT);<BR>ejes();<BR>luces();<BR>glPushMatrix();<BR>glTranslatef(posx, 
+      posy, 
+      0);<BR>glRotatef(anguloy,1.0,0.0,0.0);<BR>glRotatef(angulox,0.0,1.0,0.0);<BR>glRotatef(angulo, 
+      1, 0, 0);<BR>glRotatef(angulo, 0, 1, 0);<BR>glRotatef(angulo, 0, 0, 
+      1);<BR>glScalef(esc, esc, esc);<BR>glColor3f(1, 0, 
+      0);<BR>if(luz==1)<BR>&nbsp;&nbsp;&nbsp;glEnable(GL_LIGHTING);<BR>switch(figura) 
+      {<BR>&nbsp;&nbsp;&nbsp;case 1: glutSolidTorus(20, 80, 18, 
+      18);break;<BR>&nbsp;&nbsp;&nbsp;case 2: glutSolidSphere(100, 18, 
+      18);break;<BR>&nbsp;&nbsp;&nbsp;case 3: glutSolidCone(50, 200, 18, 
+      18);break;<BR>&nbsp;&nbsp;&nbsp;case 4: 
+      glutSolidCube(100);break;<BR>&nbsp;&nbsp;&nbsp;case 5: 
+      glutSolidTeapot(120);break;<BR>}<BR>glDisable(GL_LIGHTING);<BR>glPopMatrix();<BR>glutSwapBuffers();<BR>}</P>
+      <P class=chicocolor>void ejes() {<BR>glColor3f(0.9, 0.9, 
+      0.9);<BR>glBegin(GL_LINES);<BR>&nbsp;&nbsp;&nbsp;glVertex3f(-ancho/2, 0, 
+      0);<BR>&nbsp;&nbsp;&nbsp;glVertex3f(ancho/2, 0, 
+      0);<BR>&nbsp;&nbsp;&nbsp;glVertex3f(0, alto/2, 
+      0);<BR>&nbsp;&nbsp;&nbsp;glVertex3f(0, -alto/2, 0);<BR>glEnd();<BR>}</P>
+      <P class=chicocolor>void tecladoNormal(unsigned char tecla, int x, int y) 
+      {<BR>switch(tecla) {<BR>&nbsp;&nbsp;&nbsp;case 27: 
+      exit(0);break;<BR>}<BR>}</P>
+      <P class=chicocolor>void tecladoEspecial(int tecla, int x, int y) 
+      {<BR>switch(tecla) {<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_UP : 
+      posy++;break;<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_DOWN : 
+      posy--;break;<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_RIGHT : 
+      posx++;break;<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_LEFT : 
+      posx--;break;<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_PAGE_UP : 
+      esc=esc*1.01;break; <BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_PAGE_DOWN : 
+      esc=esc*0.99;break;<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_F1 : 
+      figura=1;break;<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_F2 : 
+      figura=2;break;<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_F3 : 
+      figura=3;break;<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_F4 : 
+      figura=4;break;<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_F5 : 
+      alterna_movimiento();break;<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_F6 : 
+      alterna_pantalla();break;<BR>&nbsp;&nbsp;&nbsp;case GLUT_KEY_F9 : 
+      luz=0;glPolygonMode(GL_FRONT_AND_BACK,GL_POINT);break;<BR>&nbsp;&nbsp;&nbsp;case 
+      GLUT_KEY_F10 : 
+      luz=0;glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);break;<BR>&nbsp;&nbsp;&nbsp;case 
+      GLUT_KEY_F11 : 
+      luz=1;glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);break;<BR>}<BR>glutPostRedisplay();<BR>}</P>
+      <P class=chicocolor>void texto(int x, int y, char *palabra) {<BR>int 
+      i;<BR>glColor3f(0,0,0);<BR>glRasterPos2f(x, y);<BR>for (i = 0; palabra[i]; 
+      i++)<BR>&nbsp;&nbsp;&nbsp;glutBitmapCharacter(GLUT_BITMAP_HELVETICA_10, 
+      palabra[i]);<BR>}</P>
+      <P class=chicocolor>void desocupado() {<BR>if (movimiento==1) 
+      {<BR>&nbsp;&nbsp;&nbsp;angulo=angulo+0.3;<BR>&nbsp;&nbsp;&nbsp;if 
+      (angulo&gt;=360)<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;angulo=0;<BR>&nbsp;&nbsp;&nbsp;glutPostRedisplay();<BR>}<BR>}</P>
+      <P class=chicocolor>void redimensionado(int anchop, int altop) 
+      {<BR>glViewport(0,0,anchop,altop);<BR>glMatrixMode(GL_PROJECTION);<BR>glLoadIdentity();<BR>gluPerspective(60.0f,(GLfloat)ancho/(GLfloat)alto,0.1,profundidad*2);<BR>gluLookAt(0,0,profundidad/1.2,0,0,0,0,1,0);<BR>glMatrixMode(GL_MODELVIEW);<BR>glLoadIdentity();<BR>}<BR></P>
+      <P class=chicocolor>void luces() {<BR>glMaterialfv(GL_FRONT_AND_BACK, 
+      GL_AMBIENT, material_ambient);<BR>glMaterialfv(GL_FRONT_AND_BACK, 
+      GL_DIFFUSE, material_diffuse);<BR>glMaterialfv(GL_FRONT_AND_BACK, 
+      GL_SPECULAR, material_specular);<BR>glMaterialf(GL_FRONT_AND_BACK, 
+      GL_SHININESS, 50.0f);<BR>glLightfv(GL_LIGHT0, GL_AMBIENT, 
+      luz_ambient);<BR>glLightfv(GL_LIGHT0, GL_DIFFUSE, 
+      luz_diffuse);<BR>glLightfv(GL_LIGHT0, GL_SPECULAR, 
+      luz_specular);<BR>glLightfv(GL_LIGHT0, GL_POSITION, 
+      luz_position);<BR>glEnable(GL_DEPTH_TEST);<BR>glEnable(GL_LIGHT0);<BR>}</P>
+      <P class=chicocolor>void crear_menu() {<BR>int submenupoligono, 
+      submenutipo;<BR>submenupoligono = glutCreateMenu(menupoligono); 
+      <BR>&nbsp;&nbsp;&nbsp;glutAddMenuEntry("Toroide", 0); 
+      <BR>&nbsp;&nbsp;&nbsp;glutAddMenuEntry("Esfera", 1); 
+      <BR>&nbsp;&nbsp;&nbsp;glutAddMenuEntry("Cono", 2); 
+      <BR>&nbsp;&nbsp;&nbsp;glutAddMenuEntry("Cubo", 3); <BR>submenutipo = 
+      glutCreateMenu(menutipo); <BR>&nbsp;&nbsp;&nbsp;glutAddMenuEntry("Puntos", 
+      0); <BR>&nbsp;&nbsp;&nbsp;glutAddMenuEntry("Lineas", 1); 
+      <BR>&nbsp;&nbsp;&nbsp;glutAddMenuEntry("Relleno", 2); 
+      <BR>glutCreateMenu(menu);<BR>&nbsp;&nbsp;&nbsp;glutAddSubMenu("Poligono", 
+      submenupoligono); <BR>&nbsp;&nbsp;&nbsp;glutAddSubMenu("Tipo", 
+      submenutipo);<BR>&nbsp;&nbsp;&nbsp;glutAddMenuEntry("Alternar Movimiento", 
+      1);<BR>&nbsp;&nbsp;&nbsp;glutAddMenuEntry("Alternar Pantalla", 
+      2);<BR>&nbsp;&nbsp;&nbsp;glutAddMenuEntry("------------------", 
+      999);<BR>&nbsp;&nbsp;&nbsp;glutAddMenuEntry("Salir", 
+      3);<BR>glutAttachMenu(GLUT_RIGHT_BUTTON);<BR>}</P>
+      <P class=chicocolor>void menu(int opcion) {<BR>switch (opcion) 
+      {<BR>&nbsp;&nbsp;&nbsp;case 1: 
+      alterna_movimiento();break;<BR>&nbsp;&nbsp;&nbsp;case 2: 
+      alterna_pantalla();break;<BR>&nbsp;&nbsp;&nbsp;case 3: 
+      exit(0);break;<BR>&nbsp;&nbsp;&nbsp;default: break;<BR>}<BR>}</P>
+      <P class=chicocolor>void menupoligono(int opcion) {<BR>switch (opcion) 
+      {<BR>&nbsp;&nbsp;&nbsp;case 0 : figura=1;break;<BR>&nbsp;&nbsp;&nbsp;case 
+      1 : figura=2;break;<BR>&nbsp;&nbsp;&nbsp;case 2 : 
+      figura=3;break;<BR>&nbsp;&nbsp;&nbsp;case 3 : 
+      figura=4;break;<BR>&nbsp;&nbsp;&nbsp;default: break;<BR>}<BR>}</P>
+      <P class=chicocolor>void menutipo(int opcion) {<BR>switch (opcion) 
+      {<BR>&nbsp;&nbsp;&nbsp;case 0: 
+      luz=0;glPolygonMode(GL_FRONT_AND_BACK,GL_POINT);break;<BR>&nbsp;&nbsp;&nbsp;case 
+      1: 
+      luz=0;glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);break;<BR>&nbsp;&nbsp;&nbsp;case 
+      2: 
+      luz=1;glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);break;<BR>&nbsp;&nbsp;&nbsp;default: 
+      break;<BR>}<BR>}</P>
+      <P class=chicocolor>void alterna_movimiento() {<BR>if(movimiento==0) 
+      <BR>&nbsp;&nbsp;&nbsp;movimiento=1; <BR>else 
+      <BR>&nbsp;&nbsp;&nbsp;movimiento=0;<BR>}</P>
+      <P class=chicocolor>void alterna_pantalla() {<BR>if(pantalla==0) 
+      {<BR>&nbsp;&nbsp;&nbsp;glutFullScreen();<BR>&nbsp;&nbsp;&nbsp;pantalla=1;<BR>}<BR>else 
+      {<BR>&nbsp;&nbsp;&nbsp;glutReshapeWindow(ancho,alto);<BR>&nbsp;&nbsp;&nbsp;pantalla=0;<BR>}<BR>glutPostRedisplay();<BR>}</P>
+      <P class=chicocolor>void mouse(int button, int estado,int x,int y) {<BR>if 
+      (button == GLUT_LEFT_BUTTON &amp;&amp; estado == GLUT_DOWN) 
+      {<BR>&nbsp;&nbsp;&nbsp;glutSetCursor(GLUT_CURSOR_CROSSHAIR);<BR>&nbsp;&nbsp;&nbsp;presionado 
+      = 1;<BR>&nbsp;&nbsp;&nbsp;xold = 
+      x;<BR>&nbsp;&nbsp;&nbsp;yold=y;<BR>}<BR>if (button == GLUT_LEFT_BUTTON 
+      &amp;&amp; estado == GLUT_UP) 
+      {<BR>&nbsp;&nbsp;&nbsp;glutSetCursor(GLUT_CURSOR_INHERIT);<BR>&nbsp;&nbsp;&nbsp;presionado=0;<BR>}<BR>}</P>
+      <P class=chicocolor>void movimiento_mouse(int x,int y) {<BR>if 
+      (presionado) {<BR>&nbsp;&nbsp;&nbsp;angulox=angulox+(x-xold); 
+      <BR>&nbsp;&nbsp;&nbsp;anguloy=anguloy+(y-yold);<BR>&nbsp;&nbsp;&nbsp;glutPostRedisplay();<BR>}<BR>xold=x;<BR>yold=y;<BR>}</P>
+      <P class=chicocolor>void texto_terminal(char *cmd) 
+      {<BR>fprintf(stderr,"USAR: %s [-h] [-f n] 
+      [-m]\n",cmd);<BR>fprintf(stderr," -h (esta ayuda)\n");<BR>fprintf(stderr," 
+      -f n (figura. n: 1,2,3 o 4)\n");<BR>fprintf(stderr," -m 
+      (movimiento)\n");<BR>fprintf(stderr,"TECLAS:\n");<BR>fprintf(stderr," ESC 
+      - Salir\n");<BR>fprintf(stderr," F1 - Poligono -&gt; 
+      Toroide\n");<BR>fprintf(stderr," F2 - Poligono -&gt; 
+      Esfera\n");<BR>fprintf(stderr," F3 - Poligono -&gt; 
+      Cono\n");<BR>fprintf(stderr," F4 - Poligono -&gt; 
+      Cubo\n");<BR>fprintf(stderr," F5 - Alternar 
+      Movimiento\n");<BR>fprintf(stderr," F6 - Alternar 
+      Pantalla\n");<BR>fprintf(stderr," F9 - Tipo Poligono -&gt; 
+      Puntos\n");<BR>fprintf(stderr," F10 - Tipo Poligono -&gt; 
+      Lineas\n");<BR>fprintf(stderr," F11 - Tipo Poligono -&gt; 
+      Relleno\n");<BR>fprintf(stderr,"MOUSE:\n");<BR>fprintf(stderr,"Boton 
+      Derecho - Menu de Opciones\n");<BR>fprintf(stderr,"Boton Izquierdo - Mover 
+      Figura\n");<BR>exit(-1);<BR>}</P></TD></TR></TBODY></TABLE>
+<P>&nbsp;</P>
+<P align=center><IMG height=415 
+src="GenMM - OpenGL_archivos/mouse_comm_terminal_h.gif" width=405></P>
+<P align=center><IMG height=130 
+src="GenMM - OpenGL_archivos/mouse_comm_terminal_opt.gif" width=405></P>
+<P align=left>La opcion 'Tetera' (Teapot) no esta en el menu, pero si puedes 
+llamarla con la linea:</P>
+<P align=left>&lt;nombre del programa&gt; -f 5 (sin movimiento) </P>
+<P align=left>&lt;nombre del programa&gt; -f 5 -m (con movimiento)</P>
+<P align=left>Las teclas F9, F10 y F11 funcionan tambien con esta figura. </P>
+<P align=center><IMG height=506 
+src="GenMM - OpenGL_archivos/mouse_comm_teapot.gif" width=652></P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>comentarios a: <A href="http://www.genmm.com/contactme.php" 
+target=_self>http://www.genmm.com/contactme.php</A></P>
+<HR>
+
+<P align=right>Diciembre del 2003 </P></BODY></HTML>
