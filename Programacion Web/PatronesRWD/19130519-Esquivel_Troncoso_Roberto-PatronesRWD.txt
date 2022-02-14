@@ -1,0 +1,14 @@
+https://19130519-2columnas-iguales-css-grid.netlify.app
+https://19130519-2columnas-iguales-flexbox.netlify.app
+https://19130519-3columnas-iguales-css-grid.netlify.app
+https://19130519-3columnas-iguales-flexbox.netlify.app
+https://19130519-3columnas-css-grid.netlify.app
+https://19130519-3columnas-flexbox.netlify.app
+https://19130519-colum-drop-css-grid.netlify.app
+https://19130519-colum-drop-flexbox.netlify.app
+https://19130519-con-sidebar-css-grid.netlify.app
+https://19130519-con-sidebar-flexbox.netlify.app
+https://19130519-layout-shifter-css-grid.netlify.app
+https://19130519-layout-shifter-flexbox.netlify.app
+https://19130519-mostly-fluid.netlify.app
+https://19130519-tiny-tweaks.netlify.app
