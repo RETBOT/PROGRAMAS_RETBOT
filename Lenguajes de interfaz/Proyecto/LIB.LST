@@ -1,0 +1,11 @@
+COMPARAB..........compara           CONTARB...........contar
+REVESB............reves             
+
+contar            Offset: 00000010H  Code and data size: 1ceH
+  CONTARB         
+
+compara           Offset: 000001a0H  Code and data size: 19cH
+  COMPARAB        
+
+reves             Offset: 000003c0H  Code and data size: 354H
+  REVESB          
