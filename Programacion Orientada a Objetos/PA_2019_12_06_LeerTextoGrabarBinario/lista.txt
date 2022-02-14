@@ -1,0 +1,41 @@
+10
+Luis Jimenez Romero
+C
+25
+100
+Fernanda Ramirez Acosta
+A
+18
+50
+Carlos Mendez Montes
+F
+24
+100
+Nicolas Romo Acosta
+B
+29
+50
+Marcos Romo Gomez
+C
+17
+100
+Laura Hernandez Sanz
+D
+28
+50
+Luis Gomez Montes
+A
+26
+100
+Pablo Santos Moreno
+F
+26
+64
+Pedro Rangel Delgado
+G
+19
+100
+Raul Dias Esquivel
+C
+30
+77

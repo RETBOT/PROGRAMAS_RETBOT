@@ -1,0 +1,41 @@
+10
+Manuel Ramos Muñoz
+E
+22
+70
+Marcos Martinez Sanches
+F
+22
+72
+Fernanda Moreno Ruiz
+F
+26
+65
+Angelica Martinez Santos
+D
+25
+72
+Nicolas Montes Ramirez
+B
+17
+82
+Lucas Martinez Sanches
+G
+30
+84
+Carlos Sanches Carillo
+D
+21
+94
+Pablo Romero Romero
+G
+26
+58
+Martin Jimenez Palacios
+C
+30
+87
+Martin Montes Dias
+F
+29
+53
