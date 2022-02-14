@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/imgs">
+        <file>Naruto.png</file>
+        <file>Naruto2.png</file>
+        <file>Naruto3.png</file>
+        <file>Sasuke.png</file>
+        <file>Sasuke2.png</file>
+        <file>Sasuke3.png</file>
+        <file>Chidori.png</file>
+        <file>Rasengan.png</file>
+        <file>ValleDelFin.png</file>
+    </qresource>
+</RCC>
