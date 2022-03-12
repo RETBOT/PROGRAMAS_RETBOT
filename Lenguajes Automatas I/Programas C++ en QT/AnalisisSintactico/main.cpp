@@ -1,10 +1,3 @@
-//
-//  main.cpp
-//  appASintactico_XCode
-//
-//  Created by Martin Valdes on 6/4/19.
-//  Copyright © 2019 Martin Valdes. All rights reserved.
-//
 
 #include <stdio.h>
 #include <stdlib.h>
